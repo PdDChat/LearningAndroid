@@ -2,13 +2,13 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu_roulette"
+        android:id="@+id/rouletteFragment"
+        android:title="@string/menu_roulette"
         android:enabled="true"
-        app:showAsAction="ifRoom"
-        android:title="@string/menu_roulette"/>
+        app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/menu_pair_create"
+        android:id="@+id/pairCreateFragment"
+        android:title="@string/menu_pair_create"
         android:enabled="true"
-        app:showAsAction="ifRoom"
-        android:title="@string/menu_pair_create"/>
+        app:showAsAction="ifRoom"/>
 </menu>
