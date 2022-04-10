@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">LearningAndroid</string>
+    <string name="menu_home">ホーム</string>
     <string name="menu_roulette">ルーレット</string>
     <string name="menu_pair_create">ペア作成</string>
 

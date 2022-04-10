@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/topFragment">
+    app:startDestination="@id/navHome">
 
     <fragment
-        android:id="@+id/topFragment"
-        android:name="com.learningandroid.TopFragment"
-        android:label="fragment_top"
-        tools:layout="@layout/fragment_top" />
+        android:id="@+id/navHome"
+        android:name="com.learningandroid.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/pairCreateFragment"
+        android:id="@+id/navPairCreate"
         android:name="com.learningandroid.PairCreateFragment"
-        android:label="fragment_pair_create"
+        android:label="@string/menu_pair_create"
         tools:layout="@layout/fragment_pair_create" />
 
     <fragment
-        android:id="@+id/rouletteFragment"
+        android:id="@+id/navRoulette"
         android:name="com.learningandroid.RouletteFragment"
-        android:label="fragment_roulette"
+        android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette" />
 </navigation>
