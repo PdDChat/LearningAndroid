@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navHome"
-        android:name="com.learningandroid.HomeFragment"
+        android:name="com.learningandroid.ui.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navPairCreate"
-        android:name="com.learningandroid.PairCreateFragment"
+        android:name="com.learningandroid.ui.PairCreateFragment"
         android:label="@string/menu_pair_create"
         tools:layout="@layout/fragment_pair_create" />
 
     <fragment
         android:id="@+id/navRoulette"
-        android:name="com.learningandroid.RouletteFragment"
+        android:name="com.learningandroid.ui.RouletteFragment"
         android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette" />
 </navigation>
