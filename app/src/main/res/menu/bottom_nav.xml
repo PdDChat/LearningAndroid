@@ -5,21 +5,20 @@
     <item
         android:id="@+id/navHome"
         android:title="@string/menu_home"
-        android:enabled="true"
+        android:icon="@drawable/ic_home"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/navRoulette"
         android:title="@string/menu_roulette"
-        android:enabled="true"
+        android:icon="@drawable/ic_autorenew"
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/navPairCreate"
         android:title="@string/menu_pair_create"
-        android:enabled="true"
-        app:showAsAction="ifRoom"/>
+        android:icon="@drawable/ic_group"/>
     <item
         android:id="@+id/navGitHub"
         android:title="@string/menu_git_hub"
-        android:enabled="true"
+        android:icon="@drawable/ic_api"
         app:showAsAction="ifRoom"/>
 </menu>
