@@ -22,4 +22,10 @@
         android:name="com.learningandroid.ui.RouletteFragment"
         android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette" />
+
+    <fragment
+        android:id="@+id/navGitHub"
+        android:name="com.learningandroid.ui.GitHubFragment"
+        android:label="@string/menu_git_hub"
+        tools:layout="@layout/fragment_git_hub" />
 </navigation>

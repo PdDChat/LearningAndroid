@@ -3,5 +3,6 @@
     <string name="menu_home">ホーム</string>
     <string name="menu_roulette">ルーレット</string>
     <string name="menu_pair_create">ペア作成</string>
+    <string name="menu_git_hub">GitHub</string>
 
 </resources>

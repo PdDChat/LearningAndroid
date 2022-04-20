@@ -17,4 +17,9 @@
         android:title="@string/menu_pair_create"
         android:enabled="true"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/navGitHub"
+        android:title="@string/menu_git_hub"
+        android:enabled="true"
+        app:showAsAction="ifRoom"/>
 </menu>
