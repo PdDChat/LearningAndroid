@@ -1,25 +1,18 @@
 package com.learningandroid.ui
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.learningandroid.model.repository.GithubRepository
+import com.learningandroid.model.repository.GitHubRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class GithubViewModel(private val repository: GithubRepository): ViewModel() {
+@HiltViewModel
+class GithubViewModel @Inject constructor(private val repository: GitHubRepository): ViewModel() {
 
     fun searchUserRepositories(name: String) {
         viewModelScope.launch {
             repository.searchUserRepositories(name)
         }
-    }
-}
-
-class GithubViewModelFactory(
-    private val repository: GithubRepository = GithubRepository()
-) : ViewModelProvider.Factory {
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return GithubViewModel(repository) as T
     }
 }

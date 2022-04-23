@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface GithubService {
+interface GitHubService {
 
     @GET("/users/{userName}/repos")
     suspend fun searchUserRepositories(@Path("userName") name: String) : Response<List<GithubInfo>>

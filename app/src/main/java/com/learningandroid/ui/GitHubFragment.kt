@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.learningandroid.databinding.FragmentGitHubBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class GitHubFragment : Fragment() {
 
     private var _binding: FragmentGitHubBinding? = null
     private val binding get() = _binding
 
-    private val viewModel: GithubViewModel by viewModels {
-        GithubViewModelFactory()
-    }
+    private val viewModel: GithubViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,7 @@ class GitHubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // viewModel.searchUserRepositories("PddChat")
+        viewModel.searchUserRepositories("PddChat")
     }
 
     override fun onDestroyView() {
