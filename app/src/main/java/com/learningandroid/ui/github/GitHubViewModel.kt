@@ -1,4 +1,4 @@
-package com.learningandroid.ui
+package com.learningandroid.ui.github
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

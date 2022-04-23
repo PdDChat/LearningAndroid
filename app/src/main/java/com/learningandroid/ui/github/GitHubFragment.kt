@@ -1,4 +1,4 @@
-package com.learningandroid.ui
+package com.learningandroid.ui.github
 
 import android.os.Bundle
 import android.view.LayoutInflater

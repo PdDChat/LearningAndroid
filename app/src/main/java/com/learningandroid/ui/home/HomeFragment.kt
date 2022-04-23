@@ -1,4 +1,4 @@
-package com.learningandroid.ui
+package com.learningandroid.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

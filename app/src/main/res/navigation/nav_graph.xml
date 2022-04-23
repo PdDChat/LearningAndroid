@@ -7,25 +7,25 @@
 
     <fragment
         android:id="@+id/navHome"
-        android:name="com.learningandroid.ui.HomeFragment"
+        android:name="com.learningandroid.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navPairCreate"
-        android:name="com.learningandroid.ui.PairCreateFragment"
+        android:name="com.learningandroid.ui.paircreate.PairCreateFragment"
         android:label="@string/menu_pair_create"
         tools:layout="@layout/fragment_pair_create" />
 
     <fragment
         android:id="@+id/navRoulette"
-        android:name="com.learningandroid.ui.RouletteFragment"
+        android:name="com.learningandroid.ui.roulette.RouletteFragment"
         android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette" />
 
     <fragment
         android:id="@+id/navGitHub"
-        android:name="com.learningandroid.ui.GitHubFragment"
+        android:name="com.learningandroid.ui.github.GitHubFragment"
         android:label="@string/menu_git_hub"
         tools:layout="@layout/fragment_git_hub" />
 </navigation>
