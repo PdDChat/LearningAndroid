@@ -6,7 +6,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LoginInfo(
-    val login: String = "",
+    @Json(name = "login")
+    val loginName: String = "",
     val id: Int = 0,
     @Json(name = "avatar_url")
     val avatarUrl: String = "",

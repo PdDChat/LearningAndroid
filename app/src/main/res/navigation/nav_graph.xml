@@ -25,7 +25,22 @@
 
     <fragment
         android:id="@+id/navGitHub"
-        android:name="com.learningandroid.ui.github.GitHubFragment"
+        android:name="com.learningandroid.ui.github.GitHubTopFragment"
         android:label="@string/menu_git_hub"
-        tools:layout="@layout/fragment_github" />
+        tools:layout="@layout/fragment_github" >
+
+        <action
+            android:id="@+id/action_navGitHub_to_gitHubInfoFragment"
+            app:destination="@id/gitHubInfoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gitHubInfoFragment"
+        android:name="com.learningandroid.ui.github.GitHubInfoFragment"
+        android:label="GitHubInfoFragment" >
+
+        <argument
+            android:name="searchName"
+            app:argType="string" />
+    </fragment>
 </navigation>
