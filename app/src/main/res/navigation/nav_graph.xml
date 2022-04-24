@@ -27,5 +27,5 @@
         android:id="@+id/navGitHub"
         android:name="com.learningandroid.ui.github.GitHubFragment"
         android:label="@string/menu_git_hub"
-        tools:layout="@layout/fragment_git_hub" />
+        tools:layout="@layout/fragment_github" />
 </navigation>

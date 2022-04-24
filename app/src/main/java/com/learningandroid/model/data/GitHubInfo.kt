@@ -5,9 +5,17 @@ import com.squareup.moshi.Json
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class GithubInfo(
+data class LoginInfo(
+    val login: String = "",
     val id: Int = 0,
-    @Json(name = "name")
+    @Json(name = "avatar_url")
+    val avatarUrl: String = "",
+): Parcelable
+
+
+@Parcelize
+data class Repositories(
+    val id: Int = 0,
     val name: String = "",
     @Json(name = "full_name")
     val fullName: String = "",

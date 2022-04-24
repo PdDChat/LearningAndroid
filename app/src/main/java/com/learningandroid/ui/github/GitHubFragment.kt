@@ -6,13 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.learningandroid.databinding.FragmentGitHubBinding
+import androidx.lifecycle.lifecycleScope
+import com.learningandroid.databinding.FragmentGithubBinding
+import com.learningandroid.ui.viewmodel.GithubViewModel
+import com.learningandroid.ui.viewmodel.ResponseStatus
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class GitHubFragment : Fragment() {
 
-    private var _binding: FragmentGitHubBinding? = null
+    private var _binding: FragmentGithubBinding? = null
     private val binding get() = _binding
 
     private val viewModel: GithubViewModel by viewModels()
@@ -21,14 +26,27 @@ class GitHubFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        _binding = FragmentGitHubBinding.inflate(inflater, container, false)
+        _binding = FragmentGithubBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.searchUserRepositories("PddChat")
+        lifecycleScope.launch {
+            viewModel.responseStatus.collect {
+                when (it) {
+                    is ResponseStatus.Success -> {
+                        binding?.name?.text = it.value?.login
+                    }
+                    else -> {}
+                }
+            }
+        }
+
+        binding?.searchButton?.setOnClickListener {
+            viewModel.searchUserRepositories(binding?.editRepositoryName?.text.toString())
+        }
     }
 
     override fun onDestroyView() {

@@ -7,5 +7,7 @@ import javax.inject.Singleton
 @Singleton
 class GitHubRepository @Inject constructor(private val gitHubService: GitHubService) {
 
-    suspend fun searchUserRepositories(name: String) = gitHubService.searchUserRepositories(name)
+    suspend fun searchLoginInfo(name: String) = gitHubService.searchLoginInfo(name)
+
+    suspend fun searchRepositories(name: String) = gitHubService.searchRepositories(name)
 }
