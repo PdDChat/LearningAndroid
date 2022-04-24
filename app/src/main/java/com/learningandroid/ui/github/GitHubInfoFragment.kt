@@ -14,7 +14,6 @@ import com.learningandroid.model.data.LoginInfo
 import com.learningandroid.ui.viewmodel.GithubViewModel
 import com.learningandroid.ui.viewmodel.ResponseStatus
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -27,6 +26,8 @@ class GitHubInfoFragment : Fragment() {
 
     private val viewModel: GithubViewModel by viewModels()
 
+    private lateinit var adapter: GitHubAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -38,13 +39,34 @@ class GitHubInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.searchUserRepositories(args.searchName)
+        setupView()
 
+        setupObserver()
+    }
+
+    private fun setupView() {
+        adapter = GitHubAdapter()
+        binding?.repositoriesRecyclerview?.adapter = adapter
+    }
+
+    private fun setupObserver() {
         lifecycleScope.launch {
-            viewModel.responseStatus.collect {
+            viewModel.searchLoginInfo(args.searchName)
+            viewModel.searchRepositories(args.searchName)
+
+            viewModel.responseLoginInfoStatus.observe(viewLifecycleOwner) {
                 when (it) {
                     is ResponseStatus.Success -> {
                         setupView(it.value)
+                    }
+                    else -> {}
+                }
+            }
+
+            viewModel.responseRepositoriesStatus.observe(viewLifecycleOwner) {
+                when (it) {
+                    is ResponseStatus.Success -> {
+                        adapter.submitList(it.value)
                     }
                     else -> {}
                 }
