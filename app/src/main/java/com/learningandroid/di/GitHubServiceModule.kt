@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -14,6 +15,6 @@ object GitHubServiceModule {
 
     @Singleton
     @Provides
-    fun provideGitHubService(retrofit: Retrofit): GitHubService =
+    fun provideGitHubService(@Named("GitHubRetrofit") retrofit: Retrofit): GitHubService =
         retrofit.create(GitHubService::class.java)
 }
