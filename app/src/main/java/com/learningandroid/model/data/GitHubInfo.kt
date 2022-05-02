@@ -13,7 +13,6 @@ data class LoginInfo(
     val avatarUrl: String = "",
 ): Parcelable
 
-
 @Parcelize
 data class Repositories(
     val id: Int = 0,

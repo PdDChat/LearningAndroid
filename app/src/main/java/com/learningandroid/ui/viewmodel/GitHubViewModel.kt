@@ -14,21 +14,21 @@ import javax.inject.Inject
 @HiltViewModel
 class GithubViewModel @Inject constructor(private val repository: GitHubRepository): ViewModel() {
 
-    private val _responseLoginInfoStatus = MutableLiveData<ResponseStatus<LoginInfo>>(ResponseStatus.None)
-    val responseLoginInfoStatus: LiveData<ResponseStatus<LoginInfo>> = _responseLoginInfoStatus
+    private val _loginInfoStatus = MutableLiveData<ResponseStatus<LoginInfo>>(ResponseStatus.None)
+    val loginInfoStatus: LiveData<ResponseStatus<LoginInfo>> = _loginInfoStatus
 
-    private val _responseRepositoriesStatus = MutableLiveData<ResponseStatus<List<Repositories>>>(ResponseStatus.None)
-    val responseRepositoriesStatus: LiveData<ResponseStatus<List<Repositories>>> = _responseRepositoriesStatus
+    private val _repositoriesStatus = MutableLiveData<ResponseStatus<List<Repositories>>>(ResponseStatus.None)
+    val repositoriesStatus: LiveData<ResponseStatus<List<Repositories>>> = _repositoriesStatus
 
     fun searchLoginInfo(name: String) {
         viewModelScope.launch {
             kotlin.runCatching {
-                _responseLoginInfoStatus.value = ResponseStatus.Loading
+                _loginInfoStatus.value = ResponseStatus.Loading
                 repository.searchLoginInfo(name)
             }.onSuccess {
-                _responseLoginInfoStatus.value = ResponseStatus.Success(it.body())
+                _loginInfoStatus.value = ResponseStatus.Success(it.body())
             }.onFailure {
-                _responseLoginInfoStatus.value = ResponseStatus.Error(it)
+                _loginInfoStatus.value = ResponseStatus.Error(it)
             }
         }
     }
@@ -36,12 +36,12 @@ class GithubViewModel @Inject constructor(private val repository: GitHubReposito
     fun searchRepositories(name: String) {
         viewModelScope.launch {
             kotlin.runCatching {
-                _responseRepositoriesStatus.value = ResponseStatus.Loading
+                _repositoriesStatus.value = ResponseStatus.Loading
                 repository.searchRepositories(name)
             }.onSuccess {
-                _responseRepositoriesStatus.value = ResponseStatus.Success(it.body())
+                _repositoriesStatus.value = ResponseStatus.Success(it.body())
             }.onFailure {
-                _responseRepositoriesStatus.value = ResponseStatus.Error(it)
+                _repositoriesStatus.value = ResponseStatus.Error(it)
             }
         }
     }

@@ -39,14 +39,24 @@ class GitHubInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView()
+        updateView()
 
         setupObserver()
     }
 
-    private fun setupView() {
+    private fun updateView() {
         adapter = GitHubAdapter()
         binding?.repositoriesRecyclerview?.adapter = adapter
+    }
+
+    private fun updateView(info: LoginInfo?) {
+        binding?.loginInfoLayout?.apply {
+            loginName.text = info?.loginName
+
+            Glide.with(requireActivity())
+                .load(info?.avatarUrl)
+                .into(loginIcon)
+        }
     }
 
     private fun setupObserver() {
@@ -54,16 +64,16 @@ class GitHubInfoFragment : Fragment() {
             viewModel.searchLoginInfo(args.searchName)
             viewModel.searchRepositories(args.searchName)
 
-            viewModel.responseLoginInfoStatus.observe(viewLifecycleOwner) {
+            viewModel.loginInfoStatus.observe(viewLifecycleOwner) {
                 when (it) {
                     is ResponseStatus.Success -> {
-                        setupView(it.value)
+                        updateView(it.value)
                     }
                     else -> {}
                 }
             }
 
-            viewModel.responseRepositoriesStatus.observe(viewLifecycleOwner) {
+            viewModel.repositoriesStatus.observe(viewLifecycleOwner) {
                 when (it) {
                     is ResponseStatus.Success -> {
                         adapter.submitList(it.value)
@@ -77,16 +87,6 @@ class GitHubInfoFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun setupView(info: LoginInfo?) {
-        binding?.loginInfoLayout?.apply {
-            loginName.text = info?.loginName
-
-            Glide.with(requireActivity())
-                .load(info?.avatarUrl)
-                .into(loginIcon)
-        }
     }
 
 }

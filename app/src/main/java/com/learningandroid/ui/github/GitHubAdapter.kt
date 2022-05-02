@@ -16,9 +16,9 @@ class GitHubAdapter: ListAdapter<Repositories, RecyclerView.ViewHolder>(DIFF_CAL
         const val VIEW_TYPE_REPOSITORY_LISt = 1
     }
 
-    inner class GithubRepositoriesHeaderViewHolder(binding: ListGithubRepositoriesHeaderBinding): RecyclerView.ViewHolder(binding.root)
+    class GithubRepositoriesHeaderViewHolder(binding: ListGithubRepositoriesHeaderBinding): RecyclerView.ViewHolder(binding.root)
 
-    inner class GithubRepositoriesViewHolder(binding: ListGithubRepositoriesBinding): RecyclerView.ViewHolder(binding.root) {
+    class GithubRepositoriesViewHolder(binding: ListGithubRepositoriesBinding): RecyclerView.ViewHolder(binding.root) {
         val name = binding.repositoryName
     }
 
