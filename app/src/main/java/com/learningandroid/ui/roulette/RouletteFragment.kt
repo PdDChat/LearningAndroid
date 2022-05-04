@@ -61,7 +61,7 @@ class RouletteFragment : Fragment() {
             viewModel.rouletteInfoStatus.observe(viewLifecycleOwner) {
                 when (it) {
                     is ResponseStatus.Success -> {
-                        adapter.submitList(it.value?.rouletteInfo)
+                        adapter.submitList(it.value)
                     }
                     else -> {}
                 }

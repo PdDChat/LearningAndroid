@@ -1,8 +1,7 @@
 package com.learningandroid.di
 
+import com.learningandroid.db.AppDatabase
 import com.learningandroid.model.dao.RouletteInfoDao
-import com.learningandroid.model.repository.RouletteRepository
-import com.learningandroid.model.repository.RouletteRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,10 +11,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object RouletteRepositoryModule {
+object DaoModule {
 
     @Singleton
     @Provides
-    fun provideRouletteRepository(@Named("RouletteDaoModule") dao: RouletteInfoDao): RouletteRepository =
-        RouletteRepositoryImpl(dao)
+    @Named("RouletteDaoModule")
+    fun provideRouletteInfoDao(database: AppDatabase): RouletteInfoDao =
+        database.rouletteInfoDao()
 }
