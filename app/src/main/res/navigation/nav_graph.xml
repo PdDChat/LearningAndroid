@@ -21,13 +21,17 @@
         android:id="@+id/navRoulette"
         android:name="com.learningandroid.ui.roulette.RouletteFragment"
         android:label="@string/menu_roulette"
-        tools:layout="@layout/fragment_roulette" />
+        tools:layout="@layout/fragment_roulette">
+        <action
+            android:id="@+id/action_navRoulette_to_registerDialogFragment"
+            app:destination="@id/registerDialogFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navGitHub"
         android:name="com.learningandroid.ui.github.GitHubTopFragment"
         android:label="@string/menu_git_hub"
-        tools:layout="@layout/fragment_github" >
+        tools:layout="@layout/fragment_github">
 
         <action
             android:id="@+id/action_navGitHub_to_gitHubInfoFragment"
@@ -37,10 +41,14 @@
     <fragment
         android:id="@+id/gitHubInfoFragment"
         android:name="com.learningandroid.ui.github.GitHubInfoFragment"
-        android:label="GitHubInfoFragment" >
+        android:label="GitHubInfoFragment">
 
         <argument
             android:name="searchName"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/registerDialogFragment"
+        android:name="com.learningandroid.ui.roulette.RegisterDialogFragment"
+        android:label="RegisterDialogFragment" />
 </navigation>

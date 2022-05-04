@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.learningandroid.databinding.FragmentRouletteBinding
 import com.learningandroid.ui.viewmodel.ResponseStatus
 import com.learningandroid.ui.viewmodel.RouletteViewModel
@@ -47,6 +48,10 @@ class RouletteFragment : Fragment() {
     private fun setUpView() {
         adapter = RouletteAdapter()
         binding?.rouletteRecyclerview?.adapter = adapter
+
+        binding?.addButton?.setOnClickListener {
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
+        }
     }
 
     private fun setUpObserver() {
