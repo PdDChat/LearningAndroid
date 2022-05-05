@@ -11,6 +11,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class RegisterDialogFragment : DialogFragment() {
 
+    interface OnRegisterClickListener {
+        fun onRegisterClick()
+    }
+
     private val viewModel: RegisterDialogViewModel by viewModels()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): AlertDialog {
@@ -20,6 +24,10 @@ class RegisterDialogFragment : DialogFragment() {
         binding.registerButton.setOnClickListener {
             val name = binding.registerEditText.text.toString()
             viewModel.registerRouletteInfo(name)
+
+            val listener = parentFragmentManager.fragments.first() as OnRegisterClickListener
+            listener.onRegisterClick()
+
             dismiss()
         }
         binding.cancelButton.setOnClickListener { dismiss() }

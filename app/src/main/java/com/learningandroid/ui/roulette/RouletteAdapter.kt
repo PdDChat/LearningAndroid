@@ -26,6 +26,6 @@ class RouletteAdapter: ListAdapter<RouletteInfo, RouletteAdapter.RouletteListVie
 }
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RouletteInfo>() {
-    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem == newItem
+    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem.id == newItem.id
     override fun areContentsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem == newItem
 }

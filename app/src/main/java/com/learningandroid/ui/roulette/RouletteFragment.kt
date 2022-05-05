@@ -1,6 +1,8 @@
 package com.learningandroid.ui.roulette
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RouletteFragment : Fragment() {
+class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListener {
 
     private var _binding: FragmentRouletteBinding? = null
     private val binding get() = _binding
@@ -67,5 +69,13 @@ class RouletteFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onRegisterClick() {
+        // FIXME DB更新が間に合わないと結果が反映されないため暫定処理。
+        //  DB更新後に取得するように修正
+        Handler(Looper.getMainLooper()).postDelayed( {
+            viewModel.getRouletteInfo()
+        }, 1000)
     }
 }
