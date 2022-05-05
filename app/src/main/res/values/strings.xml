@@ -18,5 +18,6 @@
     <!-- register dialog -->
     <string name="hint_limit_10">（全角10文字以内）</string>
     <string name="start_roulette">ルーレット開始</string>
+    <string name="zero_match_text">ルーレットを開始するためのリストを登録してください</string>
 
 </resources>

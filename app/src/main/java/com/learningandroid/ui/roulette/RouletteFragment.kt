@@ -54,6 +54,9 @@ class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListe
         binding?.addButton?.setOnClickListener {
             findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
         }
+        binding?.zeroMatchButton?.setOnClickListener {
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
+        }
 
         binding?.startRouletteButton?.setOnClickListener {
             val result = viewModel.startRoulette()
@@ -68,7 +71,17 @@ class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListe
             viewModel.rouletteInfoStatus.observe(viewLifecycleOwner) {
                 when (it) {
                     is ResponseStatus.Success -> {
+                        binding?.apply {
+                            successLayout.visibility = View.VISIBLE
+                            zeroMatchLayout.visibility = View.GONE
+                        }
                         adapter.submitList(it.value)
+                    }
+                    is ResponseStatus.ZeroMatch -> {
+                        binding?.apply {
+                            successLayout.visibility = View.GONE
+                            zeroMatchLayout.visibility = View.VISIBLE
+                        }
                     }
                     else -> {}
                 }
