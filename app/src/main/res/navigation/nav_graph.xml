@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_navRoulette_to_registerDialogFragment"
             app:destination="@id/registerDialogFragment" />
+        <action
+            android:id="@+id/action_navRoulette_to_rouletteSelectedDialogFragment"
+            app:destination="@id/rouletteSelectedDialogFragment" />
     </fragment>
 
     <fragment
@@ -51,4 +54,12 @@
         android:id="@+id/registerDialogFragment"
         android:name="com.learningandroid.ui.roulette.RegisterDialogFragment"
         android:label="RegisterDialogFragment" />
+    <dialog
+        android:id="@+id/rouletteSelectedDialogFragment"
+        android:name="com.learningandroid.ui.roulette.RouletteSelectedDialogFragment"
+        android:label="RouletteSelectedDialogFragment" >
+        <argument
+            android:name="selectedName"
+            app:argType="string" />
+    </dialog>
 </navigation>

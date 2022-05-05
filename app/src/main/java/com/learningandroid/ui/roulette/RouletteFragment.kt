@@ -54,6 +54,11 @@ class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListe
         binding?.addButton?.setOnClickListener {
             findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
         }
+
+        binding?.startRouletteButton?.setOnClickListener {
+            val result = viewModel.startRoulette()
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRouletteSelectedDialogFragment(result))
+        }
     }
 
     private fun setUpObserver() {
