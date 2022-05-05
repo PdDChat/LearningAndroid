@@ -9,6 +9,7 @@ import javax.inject.Inject
 interface RouletteRepository {
     suspend fun getRouletteInfo(): List<RouletteInfo>
     suspend fun registerRouletteInfo(name: String)
+    suspend fun deleteRouletteInfo(name: String)
 }
 
 class RouletteRepositoryImpl @Inject constructor(private val dao: RouletteInfoDao) : RouletteRepository {
@@ -20,5 +21,9 @@ class RouletteRepositoryImpl @Inject constructor(private val dao: RouletteInfoDa
     override suspend fun registerRouletteInfo(name: String) = withContext(Dispatchers.IO) {
         val info = RouletteInfo().toRouletteInfo(name)
         dao.insert(info)
+    }
+
+    override suspend fun deleteRouletteInfo(name: String) = withContext(Dispatchers.IO) {
+        dao.deleteCell(name)
     }
 }

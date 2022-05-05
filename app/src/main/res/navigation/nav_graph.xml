@@ -52,8 +52,12 @@
     </fragment>
     <dialog
         android:id="@+id/registerDialogFragment"
-        android:name="com.learningandroid.ui.roulette.RegisterDialogFragment"
-        android:label="RegisterDialogFragment" />
+        android:name="com.learningandroid.ui.roulette.RouletteInfoSettingDialogFragment"
+        android:label="RegisterDialogFragment" >
+        <argument
+            android:name="isRegister"
+            app:argType="boolean" />
+    </dialog>
     <dialog
         android:id="@+id/rouletteSelectedDialogFragment"
         android:name="com.learningandroid.ui.roulette.RouletteSelectedDialogFragment"

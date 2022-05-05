@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListener {
+class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRouletteInfoSettingClickListener {
 
     private var _binding: FragmentRouletteBinding? = null
     private val binding get() = _binding
@@ -52,10 +52,15 @@ class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListe
         binding?.rouletteRecyclerview?.adapter = adapter
 
         binding?.addButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(true))
         }
+
+        binding?.deleteButton?.setOnClickListener {
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(false))
+        }
+
         binding?.zeroMatchButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment())
+            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(true))
         }
 
         binding?.startRouletteButton?.setOnClickListener {
@@ -89,7 +94,7 @@ class RouletteFragment : Fragment(), RegisterDialogFragment.OnRegisterClickListe
         }
     }
 
-    override fun onRegisterClick() {
+    override fun onPositiveClick() {
         // FIXME DB更新が間に合わないと結果が反映されないため暫定処理。
         //  DB更新後に取得するように修正
         Handler(Looper.getMainLooper()).postDelayed( {

@@ -9,6 +9,7 @@
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
     <string name="register">登録</string>
+    <string name="delete">削除</string>
     <string name="search">検索</string>
 
     <!-- GitHubメニュー -->

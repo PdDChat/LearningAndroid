@@ -16,4 +16,7 @@ interface RouletteInfoDao {
 
     @Query("select * from roulette_info")
     fun getAll(): List<RouletteInfo>
+
+    @Query("delete from roulette_info where name = :deleteName")
+    fun deleteCell(deleteName: String)
 }
