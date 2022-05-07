@@ -16,11 +16,11 @@
             android:id="@+id/rouletteRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="10dp"
+            android:paddingTop="10dp"
+            android:paddingHorizontal="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/settingLayout"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp"
             tools:listitem="@layout/list_roulette" />
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -12,7 +12,7 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@mipmap/ic_launcher" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/loginName"
@@ -24,6 +24,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/loginIcon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="github login id"/>
+        tools:text="github login id" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

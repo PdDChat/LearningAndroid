@@ -9,9 +9,7 @@ import retrofit2.Response
 import javax.inject.Inject
 
 interface GitHubRepository {
-
     suspend fun searchLoginInfo(name: String): Response<LoginInfo>
-
     suspend fun searchRepositories(name: String): Response<List<Repositories>>
 }
 

@@ -10,10 +10,11 @@
         android:id="@+id/editRepositoryName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
         android:hint="@string/hint_search_user_name"
-        android:maxLines="1"
         android:inputType="text"
+        android:maxLines="1"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toStartOf="@+id/searchButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

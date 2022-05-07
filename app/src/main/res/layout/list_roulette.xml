@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="@drawable/round_antique_white">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/rouletteListName"
@@ -11,10 +13,8 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="24sp"
-        android:paddingHorizontal="8dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="roulette list name" />
 
