@@ -14,6 +14,7 @@ import com.learningandroid.databinding.FragmentRouletteBinding
 import com.learningandroid.ui.viewmodel.ResponseStatus
 import com.learningandroid.ui.viewmodel.RouletteViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -73,7 +74,7 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
         viewModel.getRouletteInfo()
 
         lifecycleScope.launch {
-            viewModel.rouletteInfoStatus.observe(viewLifecycleOwner) {
+            viewModel.rouletteInfoStatus.collect {
                 when (it) {
                     is ResponseStatus.Success -> {
                         binding?.apply {
