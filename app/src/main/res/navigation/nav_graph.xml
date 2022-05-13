@@ -37,7 +37,7 @@
         tools:layout="@layout/fragment_github">
 
         <action
-            android:id="@+id/action_navGitHub_to_gitHubInfoFragment"
+            android:id="@+id/actionToGitHubInfoFragment"
             app:destination="@id/gitHubInfoFragment" />
     </fragment>
 

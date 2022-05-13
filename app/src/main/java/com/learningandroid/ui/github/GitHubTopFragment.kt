@@ -26,9 +26,10 @@ class GitHubTopFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.searchButton?.setOnClickListener {
-            val text = binding?.editRepositoryName?.text.toString()
-            findNavController().navigate(GitHubTopFragmentDirections.actionNavGitHubToGitHubInfoFragment(text))
+        binding?.editRepositoryName?.apply {
+            setOnClickListener {
+                findNavController().navigate(GitHubTopFragmentDirections.actionToGitHubInfoFragment(text.toString()))
+            }
         }
     }
 

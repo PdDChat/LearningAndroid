@@ -8,22 +8,14 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/editRepositoryName"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/hint_search_user_name"
+        android:paddingHorizontal="10dp"
+        android:drawableStart="@drawable/ic_search"
         android:inputType="text"
         android:maxLines="1"
         android:textColorHint="@color/gray"
-        app:layout_constraintEnd_toStartOf="@+id/searchButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/searchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/search"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
