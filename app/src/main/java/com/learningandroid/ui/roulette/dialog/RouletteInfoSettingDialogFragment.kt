@@ -1,4 +1,4 @@
-package com.learningandroid.ui.roulette
+package com.learningandroid.ui.roulette.dialog
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -7,7 +7,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.learningandroid.R
 import com.learningandroid.databinding.DialogRouletteInfoSettingBinding
-import com.learningandroid.ui.viewmodel.RouletteInfoDialogViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

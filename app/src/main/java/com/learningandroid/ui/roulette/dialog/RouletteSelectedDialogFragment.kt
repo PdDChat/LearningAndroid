@@ -1,4 +1,4 @@
-package com.learningandroid.ui.roulette
+package com.learningandroid.ui.roulette.dialog
 
 import android.app.AlertDialog
 import android.os.Bundle

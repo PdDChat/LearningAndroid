@@ -11,8 +11,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.learningandroid.databinding.FragmentRouletteBinding
-import com.learningandroid.ui.viewmodel.ResponseStatus
-import com.learningandroid.ui.viewmodel.RouletteViewModel
+import com.learningandroid.common.ResponseStatus
+import com.learningandroid.ui.roulette.dialog.RouletteInfoSettingDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

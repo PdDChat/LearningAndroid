@@ -52,7 +52,7 @@
     </fragment>
     <dialog
         android:id="@+id/registerDialogFragment"
-        android:name="com.learningandroid.ui.roulette.RouletteInfoSettingDialogFragment"
+        android:name="com.learningandroid.ui.roulette.dialog.RouletteInfoSettingDialogFragment"
         android:label="RegisterDialogFragment" >
         <argument
             android:name="isRegister"
@@ -60,7 +60,7 @@
     </dialog>
     <dialog
         android:id="@+id/rouletteSelectedDialogFragment"
-        android:name="com.learningandroid.ui.roulette.RouletteSelectedDialogFragment"
+        android:name="com.learningandroid.ui.roulette.dialog.RouletteSelectedDialogFragment"
         android:label="RouletteSelectedDialogFragment" >
         <argument
             android:name="selectedName"

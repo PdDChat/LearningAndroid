@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import com.learningandroid.databinding.FragmentGithubInfoBinding
 import com.learningandroid.model.data.LoginInfo
 import com.learningandroid.ui.viewmodel.GithubViewModel
-import com.learningandroid.ui.viewmodel.ResponseStatus
+import com.learningandroid.common.ResponseStatus
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

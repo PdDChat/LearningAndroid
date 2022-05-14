@@ -1,4 +1,4 @@
-package com.learningandroid.ui.viewmodel
+package com.learningandroid.ui.roulette.dialog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -1,4 +1,4 @@
-package com.learningandroid.ui.viewmodel
+package com.learningandroid.common
 
 sealed class ResponseStatus<out T> {
     object None : ResponseStatus<Nothing>()

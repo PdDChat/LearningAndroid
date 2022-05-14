@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.learningandroid.common.ResponseStatus
 import com.learningandroid.model.data.LoginInfo
 import com.learningandroid.model.data.Repositories
 import com.learningandroid.model.repository.GitHubRepository
@@ -17,7 +18,8 @@ class GithubViewModel @Inject constructor(private val repository: GitHubReposito
     private val _loginInfoStatus = MutableLiveData<ResponseStatus<LoginInfo>>(ResponseStatus.None)
     val loginInfoStatus: LiveData<ResponseStatus<LoginInfo>> = _loginInfoStatus
 
-    private val _repositoriesStatus = MutableLiveData<ResponseStatus<List<Repositories>>>(ResponseStatus.None)
+    private val _repositoriesStatus = MutableLiveData<ResponseStatus<List<Repositories>>>(
+        ResponseStatus.None)
     val repositoriesStatus: LiveData<ResponseStatus<List<Repositories>>> = _repositoriesStatus
 
     fun searchLoginInfo(name: String) {
