@@ -53,20 +53,20 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
         binding?.rouletteRecyclerview?.adapter = adapter
 
         binding?.addButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(true))
+            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(true))
         }
 
         binding?.deleteButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(false))
+            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(false))
         }
 
         binding?.zeroMatchButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRegisterDialogFragment(true))
+            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(true))
         }
 
         binding?.startRouletteButton?.setOnClickListener {
             val result = viewModel.startRoulette()
-            findNavController().navigate(RouletteFragmentDirections.actionNavRouletteToRouletteSelectedDialogFragment(result))
+            findNavController().navigate(RouletteFragmentDirections.actionToRouletteSelectedDialogFragment(result))
         }
     }
 

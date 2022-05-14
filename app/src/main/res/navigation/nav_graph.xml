@@ -23,10 +23,10 @@
         android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette">
         <action
-            android:id="@+id/action_navRoulette_to_registerDialogFragment"
+            android:id="@+id/actionToRegisterDialogFragment"
             app:destination="@id/registerDialogFragment" />
         <action
-            android:id="@+id/action_navRoulette_to_rouletteSelectedDialogFragment"
+            android:id="@+id/actionToRouletteSelectedDialogFragment"
             app:destination="@id/rouletteSelectedDialogFragment" />
     </fragment>
 
