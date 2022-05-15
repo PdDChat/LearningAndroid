@@ -8,7 +8,9 @@ import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
-import org.junit.Assert
+import io.mockk.unmockkAll
+import org.junit.After
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -29,6 +31,11 @@ class RouletteViewModelTest {
         viewModel = RouletteViewModel(repository)
     }
 
+    @After
+    fun tearDown() {
+        unmockkAll()
+    }
+
     @Test
     fun ルーレット情報の取得に成功した場合_ResponseStatusがSuccessであること() {
         // arrange
@@ -40,7 +47,7 @@ class RouletteViewModelTest {
 
         // assert
         coVerify { repository.getRouletteInfo() }
-        Assert.assertEquals(ResponseStatus.Success(response), viewModel.rouletteInfoStatus.value)
+        assertEquals(ResponseStatus.Success(response), viewModel.rouletteInfoStatus.value)
     }
 
     @Test
@@ -53,7 +60,7 @@ class RouletteViewModelTest {
 
         // assert
         coVerify { repository.getRouletteInfo() }
-        Assert.assertEquals(ResponseStatus.ZeroMatch, viewModel.rouletteInfoStatus.value)
+        assertEquals(ResponseStatus.ZeroMatch, viewModel.rouletteInfoStatus.value)
     }
 
     @Test
@@ -66,6 +73,6 @@ class RouletteViewModelTest {
 
         // assert
         coVerify { repository.getRouletteInfo() }
-        Assert.assertEquals(ResponseStatus.Error(t), viewModel.rouletteInfoStatus.value)
+        assertEquals(ResponseStatus.Error(t), viewModel.rouletteInfoStatus.value)
     }
 }
