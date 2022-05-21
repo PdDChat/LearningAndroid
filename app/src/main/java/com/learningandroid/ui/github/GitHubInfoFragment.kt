@@ -9,12 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
+import com.learningandroid.common.ResponseStatus
 import com.learningandroid.databinding.FragmentGithubInfoBinding
 import com.learningandroid.model.data.LoginInfo
-import com.learningandroid.ui.viewmodel.GithubViewModel
-import com.learningandroid.common.ResponseStatus
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class GitHubInfoFragment : Fragment() {
@@ -60,11 +59,11 @@ class GitHubInfoFragment : Fragment() {
     }
 
     private fun setupObserver() {
-        lifecycleScope.launch {
-            viewModel.searchLoginInfo(args.searchName)
-            viewModel.searchRepositories(args.searchName)
+        viewModel.searchLoginInfo(args.searchName)
+        viewModel.searchRepositories(args.searchName)
 
-            viewModel.loginInfoStatus.observe(viewLifecycleOwner) {
+        lifecycleScope.launchWhenCreated {
+            viewModel.loginInfoStatus.collect {
                 when (it) {
                     is ResponseStatus.Success -> {
                         updateView(it.value)
@@ -72,8 +71,10 @@ class GitHubInfoFragment : Fragment() {
                     else -> {}
                 }
             }
+        }
 
-            viewModel.repositoriesStatus.observe(viewLifecycleOwner) {
+        lifecycleScope.launchWhenCreated {
+            viewModel.repositoriesStatus.collect {
                 when (it) {
                     is ResponseStatus.Success -> {
                         adapter.submitList(it.value)
