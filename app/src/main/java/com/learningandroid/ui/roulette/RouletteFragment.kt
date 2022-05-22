@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.learningandroid.databinding.FragmentRouletteBinding
 import com.learningandroid.common.ResponseStatus
@@ -74,22 +76,24 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
         viewModel.getRouletteInfo()
 
         lifecycleScope.launch {
-            viewModel.rouletteInfoStatus.collect {
-                when (it) {
-                    is ResponseStatus.Success -> {
-                        binding?.apply {
-                            successLayout.visibility = View.VISIBLE
-                            zeroMatchLayout.visibility = View.GONE
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.rouletteInfoStatus.collect {
+                    when (it) {
+                        is ResponseStatus.Success -> {
+                            binding?.apply {
+                                successLayout.visibility = View.VISIBLE
+                                zeroMatchLayout.visibility = View.GONE
+                            }
+                            adapter.submitList(it.value)
                         }
-                        adapter.submitList(it.value)
-                    }
-                    is ResponseStatus.ZeroMatch -> {
-                        binding?.apply {
-                            successLayout.visibility = View.GONE
-                            zeroMatchLayout.visibility = View.VISIBLE
+                        is ResponseStatus.ZeroMatch -> {
+                            binding?.apply {
+                                successLayout.visibility = View.GONE
+                                zeroMatchLayout.visibility = View.VISIBLE
+                            }
                         }
+                        else -> {}
                     }
-                    else -> {}
                 }
             }
         }
