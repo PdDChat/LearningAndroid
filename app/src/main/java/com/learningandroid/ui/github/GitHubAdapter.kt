@@ -9,6 +9,11 @@ import com.learningandroid.databinding.ListGithubRepositoriesBinding
 import com.learningandroid.databinding.ListGithubRepositoriesHeaderBinding
 import com.learningandroid.model.data.Repositories
 
+private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Repositories>() {
+    override fun areItemsTheSame(oldItem: Repositories, newItem: Repositories): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: Repositories, newItem: Repositories): Boolean = oldItem == newItem
+}
+
 class GitHubAdapter: ListAdapter<Repositories, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
     companion object {
@@ -18,8 +23,10 @@ class GitHubAdapter: ListAdapter<Repositories, RecyclerView.ViewHolder>(DIFF_CAL
 
     class GithubRepositoriesHeaderViewHolder(binding: ListGithubRepositoriesHeaderBinding): RecyclerView.ViewHolder(binding.root)
 
-    class GithubRepositoriesViewHolder(binding: ListGithubRepositoriesBinding): RecyclerView.ViewHolder(binding.root) {
-        val name = binding.repositoryName
+    class GithubRepositoriesViewHolder(private val binding: ListGithubRepositoriesBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(repositories: Repositories) {
+            binding.repositoryName.text = repositories.name
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -38,8 +45,7 @@ class GitHubAdapter: ListAdapter<Repositories, RecyclerView.ViewHolder>(DIFF_CAL
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is GithubRepositoriesViewHolder -> {
-               val item = getItem(position)
-                holder.name.text = item.name
+                holder.bind(getItem(position))
             }
         }
     }
@@ -50,9 +56,4 @@ class GitHubAdapter: ListAdapter<Repositories, RecyclerView.ViewHolder>(DIFF_CAL
             else -> VIEW_TYPE_REPOSITORY_LISt
         }
     }
-}
-
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Repositories>() {
-    override fun areItemsTheSame(oldItem: Repositories, newItem: Repositories): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: Repositories, newItem: Repositories): Boolean = oldItem == newItem
 }

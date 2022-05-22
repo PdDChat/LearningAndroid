@@ -8,10 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.learningandroid.databinding.ListRouletteBinding
 import com.learningandroid.model.data.RouletteInfo
 
+private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RouletteInfo>() {
+    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem == newItem
+}
+
 class RouletteAdapter: ListAdapter<RouletteInfo, RouletteAdapter.RouletteListViewHolder>(DIFF_CALLBACK) {
 
-    class RouletteListViewHolder(binding: ListRouletteBinding): RecyclerView.ViewHolder(binding.root) {
-        val name = binding.rouletteListName
+    class RouletteListViewHolder(private val binding: ListRouletteBinding): RecyclerView.ViewHolder(binding.root) {
+        fun bind(rouletteInfo: RouletteInfo) {
+            binding.rouletteListName.text = rouletteInfo.name
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RouletteListViewHolder {
@@ -20,12 +27,6 @@ class RouletteAdapter: ListAdapter<RouletteInfo, RouletteAdapter.RouletteListVie
     }
 
     override fun onBindViewHolder(holder: RouletteListViewHolder, position: Int) {
-        val item = getItem(position)
-        holder.name.text = item.name
+        holder.bind(getItem(position))
     }
-}
-
-private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RouletteInfo>() {
-    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem == newItem
 }
