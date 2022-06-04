@@ -4,27 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white_smoke"
     tools:context=".ui.roulette.RouletteFragment">
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editRepositoryName"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/hint_search_user_name"
-        android:paddingHorizontal="10dp"
-        android:drawableStart="@drawable/ic_search"
-        android:inputType="text"
-        android:maxLines="1"
-        android:textColorHint="@color/gray"
+        android:layout_marginVertical="24dp"
+        android:gravity="center"
+        android:text="@string/title_user_name"
+        android:textSize="18sp"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginTop="12dp"
+        android:paddingHorizontal="4dp"
+        app:boxCornerRadiusBottomEnd="8dp"
+        app:boxCornerRadiusBottomStart="8dp"
+        app:boxCornerRadiusTopEnd="8dp"
+        app:boxCornerRadiusTopStart="8dp"
+        app:boxStrokeErrorColor="@color/red"
+        app:boxStrokeWidth="1dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="20"
+        app:errorEnabled="true"
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editRepositoryName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="4dp"
+            android:hint="@string/hint_search_user_name"
+            android:inputType="text"
+            android:textColorHint="@color/gray" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

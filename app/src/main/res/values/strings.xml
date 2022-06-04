@@ -13,7 +13,8 @@
     <string name="result">結果</string>
 
     <!-- GitHubメニュー -->
-    <string name="hint_search_user_name">ユーザ名を入力してください</string>
+    <string name="title_user_name">ユーザ名を入力してください</string>
+    <string name="hint_search_user_name">ユーザ名</string>
     <string name="github_menu_header_title">リポジトリ一覧</string>
 
     <!-- register dialog -->
