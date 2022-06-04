@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.learningandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,7 +13,8 @@
         android:supportsRtl="true"
         android:name=".MyApp"
         android:networkSecurityConfig="@xml/security_config"
-        android:theme="@style/Theme.LearningAndroid">
+        android:theme="@style/AppTheme"
+        tools:targetApi="n">
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">
