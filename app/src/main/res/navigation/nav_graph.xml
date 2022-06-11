@@ -66,4 +66,9 @@
             android:name="selectedName"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/navSearchBook"
+        android:name="com.learningandroid.ui.googlebook.SearchBookFragment"
+        android:label="fragment_search_book"
+        tools:layout="@layout/fragment_search_book" />
 </navigation>

@@ -12,10 +12,14 @@
         android:title="@string/menu_roulette"
         android:icon="@drawable/ic_autorenew"
         app:showAsAction="ifRoom"/>
+<!--    <item-->
+<!--        android:id="@+id/navPairCreate"-->
+<!--        android:title="@string/menu_pair_create"-->
+<!--        android:icon="@drawable/ic_group"/>-->
     <item
-        android:id="@+id/navPairCreate"
-        android:title="@string/menu_pair_create"
-        android:icon="@drawable/ic_group"/>
+        android:id="@+id/navSearchBook"
+        android:title="@string/menu_search_book"
+        android:icon="@drawable/ic_book"/>
     <item
         android:id="@+id/navGitHub"
         android:title="@string/menu_git_hub"
