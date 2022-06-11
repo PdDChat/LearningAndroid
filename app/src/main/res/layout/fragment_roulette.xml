@@ -16,8 +16,8 @@
             android:id="@+id/rouletteRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingTop="10dp"
             android:paddingHorizontal="10dp"
+            android:paddingTop="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/settingLayout"
             app:layout_constraintTop_toTopOf="parent"
@@ -29,41 +29,44 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/addButton"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ic_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:contentDescription="@null"
-                android:foreground="?android:selectableItemBackground"
+                app:fabCustomSize="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_add"
+                app:tint="@null" />
 
-            <androidx.appcompat.widget.AppCompatImageButton
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/deleteButton"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ic_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:contentDescription="@null"
-                android:foreground="?android:selectableItemBackground"
+                app:backgroundTint="@color/red"
+                app:fabCustomSize="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_remove"
+                app:tint="@null" />
 
-            <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/startRouletteButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn_round"
+                android:backgroundTint="@color/orange"
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="18dp"
                 android:text="@string/start_roulette"
-                android:textColor="@color/white"
-                android:textSize="18sp"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 android:textStyle="bold"
+                app:cornerRadius="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/addButton"
                 app:layout_constraintStart_toEndOf="@+id/deleteButton"
