@@ -5,6 +5,7 @@ import com.learningandroid.model.data.RouletteInfo
 import com.learningandroid.model.repository.RouletteRepository
 import com.learningandroid.common.ResponseStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -18,8 +19,14 @@ class RouletteViewModel @Inject constructor(private val repository: RouletteRepo
 
     private var rouletteList: List<RouletteInfo> = listOf()
 
+    init {
+        viewModelScope.launch(Dispatchers.IO) {
+            getRouletteInfo()
+        }
+    }
+
     fun getRouletteInfo() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
                 _rouletteInfoStatus.value = ResponseStatus.Loading
                 repository.getRouletteInfo()

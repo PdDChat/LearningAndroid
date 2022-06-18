@@ -16,7 +16,6 @@ import com.learningandroid.databinding.FragmentRouletteBinding
 import com.learningandroid.common.ResponseStatus
 import com.learningandroid.ui.roulette.dialog.RouletteInfoSettingDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -42,7 +41,7 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
 
         setUpView()
 
-        setUpObserver()
+        updateView()
     }
 
     override fun onDestroyView() {
@@ -72,9 +71,7 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
         }
     }
 
-    private fun setUpObserver() {
-        viewModel.getRouletteInfo()
-
+    private fun updateView() {
         lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.rouletteInfoStatus.collect {
