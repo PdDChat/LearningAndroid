@@ -1,11 +1,9 @@
 package com.learningandroid.di
 
 import com.learningandroid.model.dao.RouletteInfoDao
-import com.learningandroid.model.repository.GitHubRepository
-import com.learningandroid.model.repository.GitHubRepositoryImpl
-import com.learningandroid.model.repository.RouletteRepository
-import com.learningandroid.model.repository.RouletteRepositoryImpl
+import com.learningandroid.model.repository.*
 import com.learningandroid.model.service.GitHubService
+import com.learningandroid.model.service.SearchBookService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,4 +24,9 @@ object RepositoryModule {
     @Provides
     fun provideRouletteRepository(@Named("RouletteDaoModule") dao: RouletteInfoDao): RouletteRepository =
         RouletteRepositoryImpl(dao)
+
+    @Singleton
+    @Provides
+    fun provideBookRepository(searchBookService: SearchBookService): BookRepository =
+        BookRepositoryImpl(searchBookService)
 }

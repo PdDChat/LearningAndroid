@@ -1,6 +1,7 @@
 package com.learningandroid.di
 
 import com.learningandroid.model.service.GitHubService
+import com.learningandroid.model.service.SearchBookService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,4 +18,9 @@ object ServiceModule {
     @Provides
     fun provideGitHubService(@Named("GitHubRetrofit") retrofit: Retrofit): GitHubService =
         retrofit.create(GitHubService::class.java)
+
+    @Singleton
+    @Provides
+    fun provideSearchBookService(@Named("SearchBookRetrofit") retrofit: Retrofit): SearchBookService =
+        retrofit.create(SearchBookService::class.java)
 }

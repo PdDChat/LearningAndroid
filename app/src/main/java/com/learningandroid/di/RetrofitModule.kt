@@ -24,4 +24,14 @@ object RetrofitModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(okHttpClient)
             .build()
+
+    @Singleton
+    @Provides
+    @Named("SearchBookRetrofit")
+    fun provideSearchBookRetrofit(okHttpClient: OkHttpClient, moshi: Moshi): Retrofit =
+        Retrofit.Builder()
+            .baseUrl("https://www.googleapis.com")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+            .client(okHttpClient)
+            .build()
 }

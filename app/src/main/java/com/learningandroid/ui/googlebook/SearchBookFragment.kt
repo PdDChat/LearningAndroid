@@ -6,6 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import com.learningandroid.common.ResponseStatus
 import com.learningandroid.databinding.FragmentSearchBookBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +32,26 @@ class SearchBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = BookAdapter()
         binding.viewmodel = viewModel
+        binding.bookRecyclerView.adapter = adapter
+
+        lifecycleScope.launchWhenCreated {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bookInfoStatus.collect {
+                    when (it) {
+                        is ResponseStatus.Success -> {
+                            adapter.submitList(it.value)
+                        }
+                        else -> {}
+                    }
+                }
+            }
+        }
+
+        binding.searchButton.setOnClickListener {
+            viewModel.getBookInfo(binding.inputBookName.text.toString())
+        }
+
     }
 }
