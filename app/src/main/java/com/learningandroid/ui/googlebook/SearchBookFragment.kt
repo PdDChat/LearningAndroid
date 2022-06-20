@@ -32,7 +32,7 @@ class SearchBookFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = BookAdapter()
+        val adapter = BookAdapter(this)
         binding.viewmodel = viewModel
         binding.bookRecyclerView.adapter = adapter
 

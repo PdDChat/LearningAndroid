@@ -2,13 +2,15 @@ package com.learningandroid.ui.googlebook
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.learningandroid.databinding.ListBookInfoBinding
 import com.learningandroid.model.data.Items
 
-class BookAdapter: ListAdapter<Items, BookAdapter.BookViewHolder>(DIFF_CALLBACK) {
+class BookAdapter(private val fragment: Fragment): ListAdapter<Items, BookAdapter.BookViewHolder>(DIFF_CALLBACK) {
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Items>() {
@@ -17,9 +19,12 @@ class BookAdapter: ListAdapter<Items, BookAdapter.BookViewHolder>(DIFF_CALLBACK)
         }
     }
 
-    class BookViewHolder(private val binding: ListBookInfoBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class BookViewHolder(private val binding: ListBookInfoBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Items) {
             binding.bookName.text = item.volumeInfo?.title
+            Glide.with(fragment)
+                .load(item.volumeInfo?.imageLinks?.thumbnail)
+                .into(binding.bookIcon)
         }
     }
 
