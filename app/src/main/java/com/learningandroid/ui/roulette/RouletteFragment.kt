@@ -58,15 +58,15 @@ class RouletteFragment : Fragment() {
         binding?.rouletteRecyclerview?.adapter = adapter
 
         binding?.addButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(true))
+            findNavController().navigate(RouletteFragmentDirections.actionToSettingDialogFragment(true))
         }
 
         binding?.deleteButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(false))
+            findNavController().navigate(RouletteFragmentDirections.actionToSettingDialogFragment(false))
         }
 
         binding?.zeroMatchButton?.setOnClickListener {
-            findNavController().navigate(RouletteFragmentDirections.actionToRegisterDialogFragment(true))
+            findNavController().navigate(RouletteFragmentDirections.actionToSettingDialogFragment(true))
         }
 
         binding?.startRouletteButton?.setOnClickListener {

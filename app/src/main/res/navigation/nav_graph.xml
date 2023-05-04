@@ -23,8 +23,8 @@
         android:label="@string/menu_roulette"
         tools:layout="@layout/fragment_roulette">
         <action
-            android:id="@+id/actionToRegisterDialogFragment"
-            app:destination="@id/registerDialogFragment" />
+            android:id="@+id/actionToSettingDialogFragment"
+            app:destination="@id/rouletteSettingDialogFragment" />
         <action
             android:id="@+id/actionToRouletteSelectedDialogFragment"
             app:destination="@id/rouletteSelectedDialogFragment" />
@@ -51,9 +51,9 @@
             app:argType="string" />
     </fragment>
     <dialog
-        android:id="@+id/registerDialogFragment"
+        android:id="@+id/rouletteSettingDialogFragment"
         android:name="com.learningandroid.ui.roulette.dialog.RouletteInfoSettingDialogFragment"
-        android:label="RegisterDialogFragment" >
+        android:label="RouletteSettingDialogFragment">
         <argument
             android:name="isRegister"
             app:argType="boolean" />
