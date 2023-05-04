@@ -4,7 +4,10 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.learningandroid.rule.MainDispatcherRule
 import com.learningandroid.ui.roulette.dialog.usecase.DeleteTargetUseCase
 import com.learningandroid.ui.roulette.dialog.usecase.RegisterTargetUseCase
+import com.learningandroid.ui.roulette.response.DeleteStatus
+import com.learningandroid.ui.roulette.response.RegisterStatus
 import io.mockk.MockKAnnotations
+import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
 import io.mockk.unmockkAll
@@ -21,7 +24,7 @@ class RouletteInfoDialogViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private lateinit var viewModel: RouletteInfoDialogViewModel
+    private lateinit var subject: RouletteInfoDialogViewModel
 
     @MockK
     private lateinit var registerUseCase: RegisterTargetUseCase
@@ -33,7 +36,7 @@ class RouletteInfoDialogViewModelTest {
     fun setUp() {
         MockKAnnotations.init(this)
 
-        viewModel = RouletteInfoDialogViewModel(
+        subject = RouletteInfoDialogViewModel(
             registerUseCase,
             deleteUseCase
         )
@@ -45,20 +48,28 @@ class RouletteInfoDialogViewModelTest {
     }
 
     @Test
-    fun `registerRouletteInfo_ルーレット情報の登録処理が走ること`() {
-        // act
-        viewModel.registerRouletteInfo("test")
+    fun `registerRouletteInfo_ルーレット情報の登録処理が呼ばれること`() {
+        // arrange
+        coEvery { registerUseCase.registerRouletteInfo(any()) } returns RegisterStatus.Success
 
+        // act
+        subject.registerRouletteInfo("test")
+
+        // assert
         coVerify {
             registerUseCase.registerRouletteInfo("test")
         }
     }
 
     @Test
-    fun `deleteRouletteInfo_ルーレット情報の削除処理が走ること`() {
-        // act
-        viewModel.deleteRouletteInfo("test")
+    fun `deleteRouletteInfo_ルーレット情報の削除処理が呼ばれること`() {
+        // arrange
+        coEvery { deleteUseCase.deleteRouletteInfo(any()) } returns DeleteStatus.Success
 
+        // act
+        subject.deleteRouletteInfo("test")
+
+        // assert
         coVerify {
             deleteUseCase.deleteRouletteInfo("test")
         }
