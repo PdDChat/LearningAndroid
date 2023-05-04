@@ -9,7 +9,7 @@ import com.learningandroid.databinding.ListRouletteBinding
 import com.learningandroid.model.data.RouletteInfo
 
 private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RouletteInfo>() {
-    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem.name == newItem.name
     override fun areContentsTheSame(oldItem: RouletteInfo, newItem: RouletteInfo): Boolean = oldItem == newItem
 }
 

@@ -1,8 +1,9 @@
 package com.learningandroid.ui.roulette.dialog
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.learningandroid.model.repository.RouletteRepository
 import com.learningandroid.rule.MainDispatcherRule
+import com.learningandroid.ui.roulette.dialog.usecase.DeleteTargetUseCase
+import com.learningandroid.ui.roulette.dialog.usecase.RegisterTargetUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coVerify
 import io.mockk.impl.annotations.MockK
@@ -23,13 +24,19 @@ class RouletteInfoDialogViewModelTest {
     private lateinit var viewModel: RouletteInfoDialogViewModel
 
     @MockK
-    private lateinit var repository: RouletteRepository
+    private lateinit var registerUseCase: RegisterTargetUseCase
+
+    @MockK
+    private lateinit var deleteUseCase: DeleteTargetUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
 
-        viewModel = RouletteInfoDialogViewModel(repository)
+        viewModel = RouletteInfoDialogViewModel(
+            registerUseCase,
+            deleteUseCase
+        )
     }
 
     @After
@@ -43,7 +50,7 @@ class RouletteInfoDialogViewModelTest {
         viewModel.registerRouletteInfo("test")
 
         coVerify {
-            repository.registerRouletteInfo("test")
+            registerUseCase.registerRouletteInfo("test")
         }
     }
 
@@ -53,7 +60,7 @@ class RouletteInfoDialogViewModelTest {
         viewModel.deleteRouletteInfo("test")
 
         coVerify {
-            repository.deleteRouletteInfo("test")
+            deleteUseCase.deleteRouletteInfo("test")
         }
     }
 }

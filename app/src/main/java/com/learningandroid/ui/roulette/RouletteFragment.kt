@@ -1,25 +1,29 @@
 package com.learningandroid.ui.roulette
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.learningandroid.databinding.FragmentRouletteBinding
+import com.learningandroid.R
 import com.learningandroid.common.ResponseStatus
-import com.learningandroid.ui.roulette.dialog.RouletteInfoSettingDialogFragment
+import com.learningandroid.databinding.FragmentRouletteBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRouletteInfoSettingClickListener {
+class RouletteFragment : Fragment() {
+
+    companion object {
+        const val RESULT_REGISTER = "result_register"
+        const val RESULT_DELETE = "result_delete"
+    }
 
     private var _binding: FragmentRouletteBinding? = null
     private val binding get() = _binding
@@ -94,13 +98,33 @@ class RouletteFragment : Fragment(), RouletteInfoSettingDialogFragment.OnRoulett
                 }
             }
         }
-    }
 
-    override fun onPositiveClick() {
-        // FIXME DB更新が間に合わないと結果が反映されないため暫定処理。
-        //  DB更新後に取得するように修正
-        Handler(Looper.getMainLooper()).postDelayed( {
-            viewModel.getRouletteInfo()
-        }, 1000)
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
+            RESULT_REGISTER
+        )?.observe(viewLifecycleOwner) {
+            if (it) {
+                viewModel.getRouletteInfo()
+            } else {
+                Toast.makeText(
+                    context,
+                    getString(R.string.already_register_error_text),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+
+        findNavController().currentBackStackEntry?.savedStateHandle?.getLiveData<Boolean>(
+            RESULT_DELETE
+        )?.observe(viewLifecycleOwner) {
+            if (it) {
+                viewModel.getRouletteInfo()
+            } else {
+                Toast.makeText(
+                    context,
+                    getString(R.string.already_delete_error_text),
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
     }
 }

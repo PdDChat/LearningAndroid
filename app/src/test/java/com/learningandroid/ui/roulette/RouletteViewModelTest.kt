@@ -3,8 +3,7 @@ package com.learningandroid.ui.roulette
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.learningandroid.common.ResponseStatus
 import com.learningandroid.model.data.RouletteInfo
-import com.learningandroid.model.repository.RouletteRepository
-import com.learningandroid.ui.roulette.RouletteViewModel
+import com.learningandroid.ui.roulette.dialog.usecase.GetTargetUseCase
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -24,12 +23,12 @@ class RouletteViewModelTest {
     private lateinit var viewModel: RouletteViewModel
 
     @MockK
-    private lateinit var repository: RouletteRepository
+    private lateinit var useCase: GetTargetUseCase
 
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        viewModel = RouletteViewModel(repository)
+        viewModel = RouletteViewModel(useCase)
     }
 
     @After
@@ -41,26 +40,26 @@ class RouletteViewModelTest {
     fun `getRouletteInfo_ルーレット情報の取得に成功した場合_ResponseStatusがSuccessであること`() {
         // arrange
         val response = listOf(RouletteInfo(name = "test"), RouletteInfo(name = "test2"))
-        coEvery { repository.getRouletteInfo() } returns response
+        coEvery { useCase.getRouletteInfo() } returns response
 
         // act
         viewModel.getRouletteInfo()
 
         // assert
-        coVerify { repository.getRouletteInfo() }
+        coVerify { useCase.getRouletteInfo() }
         assertEquals(ResponseStatus.Success(response), viewModel.rouletteInfoStatus.value)
     }
 
     @Test
     fun `getRouletteInfo_ルーレット情報の取得結果が0件の場合_ResponseStatusがZeroMatchであること`() {
         // arrange
-        coEvery { repository.getRouletteInfo() } returns listOf()
+        coEvery { useCase.getRouletteInfo() } returns listOf()
 
         // act
         viewModel.getRouletteInfo()
 
         // assert
-        coVerify { repository.getRouletteInfo() }
+        coVerify { useCase.getRouletteInfo() }
         assertEquals(ResponseStatus.ZeroMatch, viewModel.rouletteInfoStatus.value)
     }
 
@@ -68,12 +67,12 @@ class RouletteViewModelTest {
     fun `getRouletteInfo_ルーレット情報の取得に失敗した場合_ResponseStatusがErrorであること`() {
         // arrange
         val t = Throwable()
-        coEvery { repository.getRouletteInfo() } throws t
+        coEvery { useCase.getRouletteInfo() } throws t
         // act
         viewModel.getRouletteInfo()
 
         // assert
-        coVerify { repository.getRouletteInfo() }
+        coVerify { useCase.getRouletteInfo() }
         assertEquals(ResponseStatus.Error(t), viewModel.rouletteInfoStatus.value)
     }
 }

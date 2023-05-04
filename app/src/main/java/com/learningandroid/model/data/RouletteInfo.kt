@@ -6,14 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "roulette_info")
 data class RouletteInfo(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    @PrimaryKey
     val name: String = "",
     @ColumnInfo(name = "selected_num")
     val selectedNum: Int = 0
 ) {
 
     fun toRouletteInfo(name: String): RouletteInfo {
-        return RouletteInfo(id , name, selectedNum)
+        return RouletteInfo(name, selectedNum)
     }
 }
