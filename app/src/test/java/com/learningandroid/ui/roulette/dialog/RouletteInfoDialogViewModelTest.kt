@@ -6,15 +6,10 @@ import com.learningandroid.ui.roulette.dialog.usecase.DeleteTargetUseCase
 import com.learningandroid.ui.roulette.dialog.usecase.RegisterTargetUseCase
 import com.learningandroid.ui.roulette.response.DeleteStatus
 import com.learningandroid.ui.roulette.response.RegisterStatus
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.unmockkAll
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
+import org.junit.Assert.assertEquals
 
 class RouletteInfoDialogViewModelTest {
 
@@ -62,6 +57,18 @@ class RouletteInfoDialogViewModelTest {
     }
 
     @Test
+    fun `registerRouletteInfo_未入力の場合_NotEnteredが返ること`() {
+        // act
+        subject.registerRouletteInfo("")
+
+        // assert
+        coVerify {
+            registerUseCase.registerRouletteInfo("") wasNot Called
+        }
+        assertEquals(RegisterStatus.NotEntered, subject.registerStatus.value)
+    }
+
+    @Test
     fun `deleteRouletteInfo_ルーレット情報の削除処理が呼ばれること`() {
         // arrange
         coEvery { deleteUseCase.deleteRouletteInfo(any()) } returns DeleteStatus.Success
@@ -73,5 +80,17 @@ class RouletteInfoDialogViewModelTest {
         coVerify {
             deleteUseCase.deleteRouletteInfo("test")
         }
+    }
+
+    @Test
+    fun `deleteRouletteInfo_未入力の場合_NotEnteredが返ること`() {
+        // act
+        subject.deleteRouletteInfo("")
+
+        // assert
+        coVerify {
+            deleteUseCase.deleteRouletteInfo("") wasNot Called
+        }
+        assertEquals(DeleteStatus.NotEntered, subject.deleteStatus.value)
     }
 }

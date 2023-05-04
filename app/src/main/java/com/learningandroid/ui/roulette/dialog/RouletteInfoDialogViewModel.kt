@@ -25,11 +25,21 @@ class RouletteInfoDialogViewModel @Inject constructor(
     val deleteStatus = _deleteStatus.asStateFlow()
 
     fun registerRouletteInfo(name: String) {
+        if (name.isEmpty()) {
+            _registerStatus.value = RegisterStatus.NotEntered
+            return
+        }
+
         viewModelScope.launch {
             _registerStatus.value = registerUseCase.registerRouletteInfo(name)
         }
     }
     fun deleteRouletteInfo(name: String) {
+        if (name.isEmpty()) {
+            _deleteStatus.value = DeleteStatus.NotEntered
+            return
+        }
+
         viewModelScope.launch {
             _deleteStatus.value = deleteUseCase.deleteRouletteInfo(name)
         }

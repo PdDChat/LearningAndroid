@@ -43,6 +43,10 @@ class RouletteInfoSettingDialogFragment : DialogFragment() {
         lifecycleScope.launch {
             viewModel.registerStatus.collect {
                 when (it) {
+                    RegisterStatus.NotEntered -> {
+                        // TODO 未入力の場合の対応
+                        dismiss()
+                    }
                     RegisterStatus.Success -> {
                         findNavController().previousBackStackEntry?.savedStateHandle?.set(RESULT_REGISTER, true)
                         dismiss()
@@ -61,6 +65,10 @@ class RouletteInfoSettingDialogFragment : DialogFragment() {
         lifecycleScope.launch {
             viewModel.deleteStatus.collect {
                 when (it) {
+                    DeleteStatus.NotEntered -> {
+                        // TODO 未入力の場合の対応
+                        dismiss()
+                    }
                     DeleteStatus.Success -> {
                         findNavController().previousBackStackEntry?.savedStateHandle?.set(RESULT_DELETE, true)
                         dismiss()
