@@ -2,6 +2,7 @@ package com.learningandroid.model.repository
 
 import com.learningandroid.model.dao.RouletteInfoDao
 import com.learningandroid.model.data.RouletteInfo
+import com.learningandroid.ui.roulette.response.DeleteAllStatus
 import com.learningandroid.ui.roulette.response.DeleteStatus
 import com.learningandroid.ui.roulette.response.RegisterStatus
 import kotlinx.coroutines.Dispatchers
@@ -12,6 +13,7 @@ interface RouletteRepository {
     suspend fun getRouletteInfo(): List<RouletteInfo>
     suspend fun registerRouletteInfo(name: String): RegisterStatus
     suspend fun deleteRouletteInfo(name: String): DeleteStatus
+    suspend fun deleteAllRouletteInfo(): DeleteAllStatus
 }
 
 class RouletteRepositoryImpl @Inject constructor(
@@ -43,6 +45,18 @@ class RouletteRepositoryImpl @Inject constructor(
                 DeleteStatus.Success
             } else {
                 DeleteStatus.Error
+            }
+        }
+    }
+
+    override suspend fun deleteAllRouletteInfo(): DeleteAllStatus {
+        return withContext(Dispatchers.IO) {
+            try {
+                val targetList = dao.getAll()
+                dao.delete(targetList)
+                DeleteAllStatus.Success
+            } catch (e: Exception) {
+                DeleteAllStatus.Failed
             }
         }
     }

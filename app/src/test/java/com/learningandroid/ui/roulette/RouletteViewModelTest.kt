@@ -1,16 +1,14 @@
 package com.learningandroid.ui.roulette
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.work.WorkManager
 import com.learningandroid.common.ResponseStatus
 import com.learningandroid.model.data.RouletteInfo
 import com.learningandroid.ui.roulette.dialog.usecase.GetTargetUseCase
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
-import io.mockk.coVerify
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.unmockkAll
 import org.junit.After
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -25,10 +23,14 @@ class RouletteViewModelTest {
     @MockK
     private lateinit var useCase: GetTargetUseCase
 
+    @MockK
+    private lateinit var worker: WorkManager
+
     @Before
     fun setUp() {
         MockKAnnotations.init(this)
-        viewModel = RouletteViewModel(useCase)
+        every { worker.enqueueUniquePeriodicWork(any(), any(), any()) } returns mockk()
+        viewModel = RouletteViewModel(worker, useCase)
     }
 
     @After

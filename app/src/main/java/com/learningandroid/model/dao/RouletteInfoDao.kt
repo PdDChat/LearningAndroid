@@ -12,7 +12,7 @@ interface RouletteInfoDao {
     fun update(rouletteInfo: RouletteInfo)
 
     @Delete
-    fun delete(rouletteInfo: RouletteInfo)
+    fun delete(rouletteInfoList: List<RouletteInfo>)
 
     @Query("select * from roulette_info")
     fun getAll(): List<RouletteInfo>

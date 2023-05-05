@@ -3,6 +3,7 @@ package com.learningandroid.model.repository
 import android.database.sqlite.SQLiteConstraintException
 import com.learningandroid.model.dao.RouletteInfoDao
 import com.learningandroid.model.data.RouletteInfo
+import com.learningandroid.ui.roulette.response.DeleteAllStatus
 import com.learningandroid.ui.roulette.response.DeleteStatus
 import com.learningandroid.ui.roulette.response.RegisterStatus
 import io.mockk.*
@@ -32,7 +33,7 @@ class RouletteRepositoryImplTest {
     }
 
     @Test
-    fun `registerRouletteInfo_成功時にSuccessが返ること`() = runBlocking {
+    fun `registerRouletteInfo_登録に成功した場合_Successが返ること`() = runBlocking {
         // arrange
         coEvery { dao.insert(any()) } just Runs
         val registerName = "test"
@@ -46,7 +47,7 @@ class RouletteRepositoryImplTest {
     }
 
     @Test
-    fun `registerRouletteInfo_登録済みの名前を指定した場合にErrorが返ること`() = runBlocking {
+    fun `registerRouletteInfo_登録済みの名前を指定した場合_Errorが返ること`() = runBlocking {
         // arrange
         coEvery { dao.insert(any()) } throws SQLiteConstraintException()
         val registerName = "test"
@@ -60,7 +61,7 @@ class RouletteRepositoryImplTest {
     }
 
     @Test
-    fun `deleteRouletteInfo_削除成功時にSuccessが返ること`() = runBlocking {
+    fun `deleteRouletteInfo_削除に成功した場合_Successが返ること`() = runBlocking {
         // arrange
         coEvery { dao.deleteCell(any()) } returns 1
         val deleteName = "test"
@@ -74,7 +75,7 @@ class RouletteRepositoryImplTest {
     }
 
     @Test
-    fun `deleteRouletteInfo_存在しない名前を指定した場合にErrorが返ること`() = runBlocking {
+    fun `deleteRouletteInfo_存在しない名前を指定した場合_Errorが返ること`() = runBlocking {
         // arrange
         coEvery { dao.deleteCell(any()) } returns 0
         val deleteName = "test"
@@ -85,5 +86,50 @@ class RouletteRepositoryImplTest {
         // assert
         coVerify { dao.deleteCell(deleteName) }
         assertEquals(DeleteStatus.Error, result)
+    }
+
+    @Test
+    fun `deleteAllRouletteInfo_削除に成功した場合_Successが返ること`() = runBlocking {
+        // arrange
+        val targetList = listOf(RouletteInfo("test1"), RouletteInfo("test2"))
+        coEvery { dao.getAll() } returns targetList
+        coEvery { dao.delete(targetList) } returns mockk()
+
+        // act
+        val result = subject.deleteAllRouletteInfo()
+
+        // assert
+        coVerify { dao.getAll() }
+        coVerify { dao.delete(targetList) }
+        assertEquals(DeleteAllStatus.Success, result)
+    }
+
+    @Test
+    fun `deleteAllRouletteInfo_一覧取得時に例外が発生した場合_Failedが返ること`() = runBlocking {
+        // arrange
+        coEvery { dao.getAll() } throws Exception()
+
+        // act
+        val result = subject.deleteAllRouletteInfo()
+
+        // assert
+        coVerify { dao.getAll() }
+        assertEquals(DeleteAllStatus.Failed, result)
+    }
+
+    @Test
+    fun `deleteAllRouletteInfo_削除時に例外が発生した場合_Failedが返ること`() = runBlocking {
+        // arrange
+        val targetList = listOf(RouletteInfo("test1"), RouletteInfo("test2"))
+        coEvery { dao.getAll() } returns targetList
+        coEvery { dao.delete(targetList) } throws Exception()
+
+        // act
+        val result = subject.deleteAllRouletteInfo()
+
+        // assert
+        coVerify { dao.getAll() }
+        coVerify { dao.delete(targetList) }
+        assertEquals(DeleteAllStatus.Failed, result)
     }
 }

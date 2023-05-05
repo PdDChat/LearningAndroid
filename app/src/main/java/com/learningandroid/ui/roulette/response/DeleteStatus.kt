@@ -6,3 +6,8 @@ sealed class DeleteStatus {
     object Success : DeleteStatus()
     object Error : DeleteStatus()
 }
+
+sealed class DeleteAllStatus {
+    object Success : DeleteAllStatus()
+    object Failed : DeleteAllStatus()
+}
