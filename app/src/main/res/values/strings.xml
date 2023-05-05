@@ -6,6 +6,11 @@
     <string name="menu_search_book">本検索</string>
     <string name="menu_git_hub">GitHub</string>
 
+    <!-- Hyperion -->
+    <string name="hyperion_plugin_title">APIデバッグ設定</string>
+    <string name="hyperion_plugin_description">APIレスポンスを変更します</string>
+
+
     <!-- 共通 -->
     <string name="ok">OK</string>
     <string name="cancel">キャンセル</string>
